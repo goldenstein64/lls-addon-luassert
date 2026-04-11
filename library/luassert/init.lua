@@ -476,6 +476,41 @@ function luassert:get_parameter(name) end
 ---@return {revert:fun()}
 function luassert:snapshot() end
 
+---a list of values to be formatted by `state.format_argument`
+---@class luassert.format.args<T>
+---argument values
+---@field [integer] T
+---the number of arguments
+---@field n integer
+---a set describing which arguments should be formatted
+---@field nofmt { [integer]: true? }
+---a map describing the second value passed to each format function
+---@field fmtargs { [integer]: unknown? }
+
+---Transform a list of values `args` in-place to a list of strings.
+---@param args luassert.format.args<unknown>
+---@return luassert.format.args<string> args -- the arguments that were transformed
+function luassert:format(args) end
+
+---@param spy luassert.Spy
+function luassert:add_spy(spy) end
+
+---stores an error level
+---@class luassert.Level
+---@field level integer
+
+---Create a level-value that can be passed as a third value to a plain
+---`assert()` call.
+---@param level integer
+---@return luassert.Level
+function luassert:level(level) end
+
+---Get the error level associated with this level-value. Returns `nil` if it's
+---not a level-value.
+---@param level luassert.Level
+---@return integer?
+function luassert:get_level(level) end
+
 --#endregion
 
 --- unregister custom assertions
