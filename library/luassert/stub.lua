@@ -41,7 +41,6 @@ local stub_factory = {}
 ---@param key unknown -- the key of the method in the `object` to replace
 ---@param ... any -- a function that operates on the remaining passed in values and returns more values or just values to return
 ---@return luassert.Stub stub -- a stub object that can be used to perform assertions
----@return any ... -- values returned by a passed in function or just the values passed in
 ---@overload fun(object: table, key: unknown, fn: function): (stub: luassert.Stub)
 function stub_factory(object, key, ...) end
 
@@ -50,7 +49,6 @@ function stub_factory(object, key, ...) end
 ---@param key string -- The key of the method in the `object` to replace
 ---@param ... any -- A function that operates on the remaining passed in values and returns more values or just values to return
 ---@return luassert.Stub stub -- A stub object that can be used to perform assertions
----@return any ... -- Values returned by a passed in function or just the values passed in
 ---
 ---## Example
 ---```
@@ -74,7 +72,7 @@ function stub_factory(object, key, ...) end
 ---
 ---        myStub:revert()
 ---
----        t.lottery(10, 11, 12) -- prints
+---        t.lottery(10, 11, 12) -- prints "Your numbers: 10,11,12"
 ---    end)
 ---end)
 ---```
