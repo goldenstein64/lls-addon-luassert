@@ -7,12 +7,12 @@ local stub = {}
 ---@return any old_elem -- the original value it stubbed
 function stub:revert() end
 
----Return these values when called.
+---Return `...` when called.
 ---@param ... unknown
 ---@return self
 function stub.returns(...) end
 
----Call this function and use its return values when called.
+---Call `func` and use its return values when called.
 ---@param func function
 ---@return self
 function stub.invokes(func) end
@@ -21,34 +21,37 @@ function stub.invokes(func) end
 stub.by_default = nil
 
 ---@class luassert.Stub.call_interface
----Return these values when called.
+---Return `...` when called.
 ---@field returns fun(...: unknown): luassert.Stub
----Call this function and use its return values when called.
+---Call `func` and use its return values when called.
 ---@field invokes fun(func: function): luassert.Stub
 
----Return an interface that allows changing stub behavior when given
+---Return an interface that allows changing stub behavior when given the
+---following arguments.
 ---@return luassert.Stub.call_interface
 function stub.on_call_with(...) end
 
----Function similarly to spies, except that stubs do not call the function that they replace.
+---like spies, except that stubs do not call the function
+---they replace.
 ---@class luassert.stub_factory
 ---@overload fun(object: table, key: unknown, fn: function): (stub: luassert.Stub)
----@overload fun(object: table, key: unknown, ...: any): (stub: luassert.Stub)
+---@overload fun(object: table, key: unknown, ...: unknown): (stub: luassert.Stub)
 local stub_factory = {}
 
 ---Create a new stub that replaces a method in a table in-place.
 ---@param object table -- the object that the method is in
 ---@param key unknown -- the key of the method in the `object` to replace
----@param ... any -- a function that operates on the remaining passed in values and returns more values or just values to return
+---@param ... unknown -- a function that operates on the remaining passed in values and returns more values or just values to return
 ---@return luassert.Stub stub -- a stub object that can be used to perform assertions
 ---@overload fun(object: table, key: unknown, fn: function): (stub: luassert.Stub)
 function stub_factory(object, key, ...) end
 
----Creates a new stub that replaces a method in a table in place.
----@param object table -- The object that the method is in
----@param key string -- The key of the method in the `object` to replace
----@param ... any -- A function that operates on the remaining passed in values and returns more values or just values to return
----@return luassert.Stub stub -- A stub object that can be used to perform assertions
+---Create a new stub that replaces a method in a table in place.
+---@param object table -- the object that the method is in
+---@param key string -- the key of the method in the `object` to replace
+---@param ... unknown -- a function that operates on the remaining passed in values and returns more values or just values to return
+---@return luassert.Stub stub -- a stub object that can be used to perform assertions
+---@overload fun(object: table, key: unknown, fn: function): (stub: luassert.Stub)
 ---
 ---## Example
 ---```
