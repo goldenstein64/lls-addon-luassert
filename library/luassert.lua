@@ -3,228 +3,291 @@
 ---@class luassert.internal
 local internal = {}
 
----@class luassert:luassert.internal
+internal.is = internal
+internal.a = internal
+internal.an = internal
+internal.the = internal
+internal.are = internal
+internal.was = internal
+internal.has = internal
+internal.does = internal
+
+internal.is_not = internal
+internal._not = internal.is_not
+internal.Not = internal.is_not
+internal.no = internal.is_not
+
+---@class luassert : luassert.internal
 local luassert = {}
 
 --#region Assertions
 
 ---Assert that `value == true`.
----@param value any The value to confirm is `true`.
-function internal.True(value) end
+---@param value unknown The value to confirm is `true`.
+function internal.is_true(value) end
 
-internal.is_true = internal.True
-internal.is_not_true = internal.True
+internal.True = internal.is_true
+internal._true = internal.is_true
+internal.is_not_true = internal.is_true
+internal.not_true = internal.is_true
 
 ---Assert that `value == false`.
----@param value any The value to confirm is `false`.
-function internal.False(value) end
+---@param value unknown The value to confirm is `false`.
+function internal.is_false(value) end
 
-internal.is_false = internal.False
-internal.is_not_false = internal.False
+internal.False = internal.is_false
+internal.is_not_false = internal.is_false
+internal.not_false = internal.is_false
 
 ---Assert that `type(value) == "boolean"`.
----@param value any The value to confirm is of type `boolean`.
-function internal.Boolean(value) end
+---@param value unknown The value to confirm is of type `boolean`.
+function internal.is_boolean(value) end
 
-internal.boolean = internal.Boolean
-internal.is_boolean = internal.Boolean
-internal.is_not_boolean = internal.Boolean
+internal.Boolean = internal.is_boolean
+internal.boolean = internal.is_boolean
+internal.is_a_boolean = internal.is_boolean
+internal.is_not_boolean = internal.is_boolean
+internal.not_boolean = internal.is_boolean
+internal.is_not_a_boolean = internal.is_boolean
 
 ---Assert that `type(value) == "number"`.
----@param value any The value to confirm is of type `number`.
-function internal.Number(value) end
+---@param value unknown The value to confirm is of type `number`.
+function internal.is_number(value) end
 
-internal.number = internal.Number
-internal.is_number = internal.Number
-internal.is_not_number = internal.Number
+internal.number = internal.is_number
+internal.Number = internal.is_number
+internal.is_a_number = internal.is_number
+internal.is_not_number = internal.is_number
+internal.not_number = internal.is_number
+internal.is_not_a_number = internal.is_number
 
 ---Assert that `type(value) == "string"`.
----@param value any The value to confirm is of type `string`.
-function internal.String(value) end
+---@param value unknown The value to confirm is of type `string`.
+function internal.is_string(value) end
 
-internal.string = internal.String
-internal.is_string = internal.String
-internal.is_not_string = internal.String
+internal.string = internal.is_string
+internal.String = internal.is_string
+internal.is_a_string = internal.is_string
+internal.not_string = internal.is_string
+internal.is_not_string = internal.is_string
+internal.is_not_a_string = internal.is_string
 
 ---Assert that `type(value) == "table"`.
----@param value any The value to confirm is of type `table`.
-function internal.Table(value) end
+---@param value unknown The value to confirm is of type `table`.
+function internal.is_table(value) end
 
-internal.table = internal.Table
-internal.is_table = internal.Table
-internal.is_not_table = internal.Table
+internal.table = internal.is_table
+internal.Table = internal.is_table
+internal.is_a_table = internal.is_table
+internal.is_not_table = internal.is_table
+internal.not_table = internal.is_table
+internal.is_not_a_table = internal.is_table
 
 ---Assert that `type(value) == "nil"`.
----@param value any The value to confirm is of type `nil`.
-function internal.Nil(value) end
+---@param value unknown The value to confirm is of type `nil`.
+function internal.is_nil(value) end
 
-internal.is_nil = internal.Nil
-internal.is_not_nil = internal.Nil
+internal.Nil = internal.is_nil
+internal.is_not_nil = internal.is_nil
+internal.not_nil = internal.is_nil
 
 ---Assert that `type(value) == "userdata"`.
----@param value any The value to confirm is of type `userdata`.
-function internal.Userdata(value) end
+---@param value unknown The value to confirm is of type `userdata`.
+function internal.is_userdata(value) end
 
-internal.userdata = internal.Userdata
-internal.is_userdata = internal.Userdata
-internal.is_not_userdata = internal.Userdata
+internal.userdata = internal.is_userdata
+internal.Userdata = internal.is_userdata
+internal.is_a_userdata = internal.is_userdata
+internal.is_not_userdata = internal.is_userdata
+internal.not_userdata = internal.is_userdata
+internal.is_not_a_userdata = internal.is_userdata
 
 ---Assert that `type(value) == "function"`.
----@param value any The value to confirm is of type `function`.
-function internal.Function(value) end
+---@param value unknown The value to confirm is of type `function`.
+function internal.is_function(value) end
 
-internal.is_function = internal.Function
-internal.is_not_function = internal.Function
+internal.Function = internal.is_function
+internal.is_a_function = internal.is_function
+internal.is_not_function = internal.is_function
+internal.not_function = internal.is_function
+internal.is_not_a_function = internal.is_function
 
 ---Assert that `type(value) == "thread"`.
----@param value any The value to confirm is of type `thread`.
-function internal.Thread(value) end
+---@param value unknown The value to confirm is of type `thread`.
+function internal.is_thread(value) end
 
-internal.thread = internal.Thread
-internal.is_thread = internal.Thread
-internal.is_not_thread = internal.Thread
+internal.thread = internal.is_thread
+internal.Thread = internal.is_thread
+internal.is_a_thread = internal.is_thread
+internal.is_not_thread = internal.is_thread
+internal.not_thread = internal.is_thread
+internal.is_not_a_thread = internal.is_thread
+
 
 ---Assert that a value is truthy.
----@param value any The value to confirm is truthy.
-function internal.truthy(value) end
+---@param value unknown The value to confirm is truthy.
+function internal.is_truthy(value) end
 
-internal.Truthy = internal.truthy
-internal.is_truthy = internal.truthy
-internal.is_not_truthy = internal.truthy
+internal.Truthy = internal.is_truthy
+internal.truthy = internal.is_truthy
+internal.is_not_truthy = internal.is_truthy
+internal.not_truthy = internal.is_truthy
 
 ---Assert that a value is falsy.
----@param value any The value to confirm is falsy.
-function internal.falsy(value) end
+---@param value unknown The value to confirm is falsy.
+function internal.is_falsy(value) end
 
-internal.Falsy = internal.falsy
-internal.is_falsy = internal.falsy
-internal.is_not_falsy = internal.falsy
+internal.Falsy = internal.is_falsy
+internal.falsy = internal.is_falsy
+internal.is_not_falsy = internal.is_falsy
+internal.not_falsy = internal.is_falsy
 
 ---Assert that a callback throws an error.
----@param callback function A callback function that should error
----@param error? string The specific error message that will be asserted
-function internal.error(callback, error) end
+---@param callback function -- A callback function that should error
+---@param error? any -- The error message that will be asserted
+function internal.has_error(callback, error) end
 
-internal.Error = internal.error
-internal.has_error = internal.error
-internal.no_error = internal.error
-internal.no_has_error = internal.error
-internal.has_no_error = internal.error
+internal.Error = internal.has_error
+internal.error = internal.has_error
+internal.errors = internal.has_error
+internal.no_error = internal.has_error
+internal.no_errors = internal.has_error
+internal.no_has_error = internal.has_error
+internal.has_no_error = internal.has_error
+internal.has_no_errors = internal.has_error
 
---- the api is the same as string.find
+---Assert that a string matches a pattern.
 ---@param pattern string
 ---@param actual string
 ---@param init? integer
 ---@param plain? boolean
+---
 ---## Example
---[[
-```lua
-  it("Checks matches() assertion does string matching", function()
-    assert.is.error(function() assert.matches('.*') end)  -- minimum 2 arguments
-    assert.is.error(function() assert.matches(nil, 's') end)  -- arg1 must be a string
-    assert.is.error(function() assert.matches('s', {}) end)  -- arg2 must be convertable to string
-    assert.is.error(function() assert.matches('s', 's', 's', 's') end)  -- arg3 or arg4 must be a number or nil
-    assert.matches("%w+", "test")
-    assert.has.match("%w+", "test")
-    assert.has_no.match("%d+", "derp")
-    assert.has.match("test", "test", nil, true)
-    assert.has_no.match("%w+", "test", nil, true)
-    assert.has.match("^test", "123 test", 5)
-    assert.has_no.match("%d+", "123 test", '4')
-  end)
-```
-]]
+---
+---```lua
+---it("Checks matches() assertion does string matching", function()
+---    assert.is.error(function() assert.matches('.*') end)  -- minimum 2 arguments
+---    assert.is.error(function() assert.matches(nil, 's') end)  -- arg1 must be a string
+---    assert.is.error(function() assert.matches('s', {}) end)  -- arg2 must be convertable to string
+---    assert.is.error(function() assert.matches('s', 's', 's', 's') end)  -- arg3 or arg4 must be a number or nil
+---    assert.matches("%w+", "test")
+---    assert.has.match("%w+", "test")
+---    assert.has.match("test", "test", nil, true)
+---    assert.has.match("^test", "123 test", 5)
+---    assert.has.match("^test", "123 test", '5')
+---    assert.has_no.match("%d+", "derp")
+---    assert.has_no.match("%w+", "test", nil, true)
+---    assert.has_no.match("%d+", "123 test", '4')
+---end)
+---```
 function internal.matches(pattern, actual, init, plain) end
 
 internal.is_matches = internal.matches
-internal.is_not_matches = internal.matches
+internal.no_matches = internal.matches
 
 internal.match = internal.matches
-internal.is_match = internal.matches
-internal.is_not_match = internal.matches
+internal.does_match = internal.matches
+internal.has_match = internal.matches
+internal.does_not_match = internal.matches
+internal.no_match = internal.matches
+internal.has_no_match = internal.matches
 
 ---Assert that two values are near (equal to within a tolerance).
----@param expected number The expected value
----@param actual number The actual value
----@param tolerance number The tolerable difference between the two values
+---@param expected number -- The expected value
+---@param actual number -- The actual value
+---@param tolerance number -- The tolerable difference between the two values
+---@param message? string
+---
 ---## Example
---[[
-    ```lua
-      it("Checks near() assertion handles tolerances", function()
-        assert.is.error(function() assert.near(0) end)  -- minimum 3 arguments
-        assert.is.error(function() assert.near(0, 0) end)  -- minimum 3 arguments
-        assert.is.error(function() assert.near('a', 0, 0) end)  -- arg1 must be convertable to number
-        assert.is.error(function() assert.near(0, 'a', 0) end)  -- arg2 must be convertable to number
-        assert.is.error(function() assert.near(0, 0, 'a') end)  -- arg3 must be convertable to number
-        assert.is.near(1.5, 2.0, 0.5)
-        assert.is.near('1.5', '2.0', '0.5')
-        assert.is_not.near(1.5, 2.0, 0.499)
-        assert.is_not.near('1.5', '2.0', '0.499')
-    end)
-    ```
-]]
-function internal.near(expected, actual, tolerance) end
+---
+---```lua
+---it("Checks near() assertion handles tolerances", function()
+---    assert.is.error(function() assert.near(0) end)  -- minimum 3 arguments
+---    assert.is.error(function() assert.near(0, 0) end)  -- minimum 3 arguments
+---    assert.is.error(function() assert.near('a', 0, 0) end)  -- arg1 must be convertible to number
+---    assert.is.error(function() assert.near(0, 'a', 0) end)  -- arg2 must be convertible to number
+---    assert.is.error(function() assert.near(0, 0, 'a') end)  -- arg3 must be convertible to number
+---    assert.is.near(1.5, 2.0, 0.5)
+---    assert.is.near('1.5', '2.0', '0.5')
+---    assert.is_not.near(1.5, 2.0, 0.499)
+---    assert.is_not.near('1.5', '2.0', '0.499')
+---end)
+---```
+function internal.is_near(expected, actual, tolerance, message) end
 
-internal.Near = internal.near
-internal.is_near = internal.near
-internal.is_not_near = internal.near
+internal.Near = internal.is_near
+internal.near = internal.is_near
+internal.is_not_near = internal.is_near
 
----Check that two or more items are equal.
+---Assert that two or more items are equal.
 ---
 ---When comparing tables, a reference check will be used.
----@param expected any The expected value
----@param ... any Values to check the equality of
-function internal.equal(expected, ...) end
+---@param expected unknown -- The expected value
+---@param actual unknown -- Values to check the equality of
+---@param message? string
+function internal.are_equal(expected, actual, message) end
 
-internal.Equal = internal.equal
-internal.are_equal = internal.equal
-internal.are_not_equal = internal.equal
+internal.Equal = internal.are_equal
+internal.equal = internal.are_equal
+internal.are_not_equal = internal.are_equal
 
----Check that two or more items that are considered the "same".
+---Assert that two or more items are considered the "same".
 ---
 ---When comparing tables, a deep compare will be performed.
----@param expected any The expected value
----@param ... any Values to check
-function internal.same(expected, ...) end
+---@param expected unknown -- The expected value
+---@param actual unknown -- Values to check
+---@param message? string
+function internal.are_same(expected, actual, message) end
 
-internal.Same = internal.same
-internal.are_same = internal.same
-internal.are_not_same = internal.same
+internal.Same = internal.are_same
+internal.same = internal.are_same
+internal.are_not_same = internal.are_same
 
---- Number of return values of function
+---Assert the number of values a function returns
 ---@param argument_number integer
----@param func fun()
+---@param func function
 function internal.returned_arguments(argument_number, func) end
 
 internal.not_returned_arguments = internal.returned_arguments
+internal.has_not_returned_arguments = internal.returned_arguments
 
---- check error message by string.match/string.find(`plain`=true)
+---Set the message
+---@param message string
+---@return luassert.internal
+function internal.message(message) end
+
+---@overload fun(func: function, pattern: string, message?: string, init?: integer, plain?: boolean)
+---@overload fun(func: function, pattern: string, init?: integer, message?: string, plain?: boolean)
+---Check error message using `string.match`, or if `plain` is true, using
+---`string.find`
 ---@param func function
 ---@param pattern string
 ---@param init? integer
 ---@param plain? boolean
----##Example
---[[
-```lua
-  it("Checks error_matches to accept only callable arguments", function()
-    local t_ok = setmetatable( {}, { __call = function() end } )
-    local t_nok = setmetatable( {}, { __call = function() error("some error") end } )
-    local f_ok = function() end
-    local f_nok = function() error("some error") end
-
-    assert.error_matches(f_nok, ".*")
-    assert.no_error_matches(f_ok, ".*")
-    assert.error_matches(t_nok, ".*")
-    assert.no_error_matches(t_ok, ".*")
-  end)
-```
-]]
-function internal.error_matches(func, pattern, init, plain) end
+---@param message? string
+---
+---## Example
+---
+---```lua
+---it("Checks error_matches to accept only callable arguments", function()
+---    local t_ok = setmetatable({}, { __call = function() end })
+---    local t_nok = setmetatable({}, { __call = function() error("some error") end })
+---    local f_ok = function() end
+---    local f_nok = function() error("some error") end
+---
+---    assert.error_matches(f_nok, ".*")
+---    assert.no_error_matches(f_ok, ".*")
+---    assert.error_matches(t_nok, ".*")
+---    assert.no_error_matches(t_ok, ".*")
+---end)
+---```
+function internal.error_matches(func, pattern, init, plain, message) end
 
 internal.no_error_matches = internal.error_matches
 
 internal.error_match = internal.error_matches
 internal.no_error_match = internal.error_matches
+internal.error_does_not_match = internal.error_matches
 
 internal.matches_error = internal.error_matches
 internal.no_matches_error = internal.error_matches
@@ -234,19 +297,17 @@ internal.no_match_error = internal.error_matches
 
 --#endregion
 
---[[ Helpers ]]
-
---#region
+--#region Helpers
 
 ---Assert that all numbers in two arrays are within a specified tolerance of
 ---each other.
 ---@param expected number[] The expected values
 ---@param actual number[] The actual values
 ---@param tolerance number The tolerable difference between the values in the two arrays
-function internal.all_near(expected, actual, tolerance) end
+function internal.are_all_near(expected, actual, tolerance) end
 
-internal.are_all_near = internal.all_near
-internal.are_not_all_near = internal.all_near
+internal.all_near = internal.are_all_near
+internal.are_not_all_near = internal.are_all_near
 
 --- array is uniqued
 ---@param arr any[]
@@ -261,10 +322,10 @@ internal.are_not_all_near = internal.all_near
 ---    assert.is_not.unique(tablenotunique)
 ---  end)
 ---```
-function internal.unique(arr) end
+function internal.is_unique(arr) end
 
-internal.is_unique = internal.unique
-internal.is_not_unique = internal.unique
+internal.unique = internal.is_unique
+internal.is_not_unique = internal.is_unique
 
 --#endregion
 
@@ -272,13 +333,13 @@ internal.is_not_unique = internal.unique
 
 ---Perform an assertion on a spy object. This will allow you to call further
 ---functions to perform an assertion.
----@param spy luassert.spy The spy object to begin asserting
+---@param spy luassert.Spy The spy object to begin asserting
 ---@return luassert.spy.assert spyAssert A new object that has further assert function options
 function internal.spy(spy) end
 
 ---Perform an assertion on a stub object. This will allow you to call further
 ---functions to perform an assertion.
----@param stub luassert.spy The stub object to begin asserting
+---@param stub luassert.Spy The stub object to begin asserting
 ---@return luassert.spy.assert stubAssert A new object that has further assert function options
 function internal.stub(stub) end
 
@@ -289,7 +350,7 @@ function internal.stub(stub) end
 ---Perform an assertion on an array object. This will allow you to call further
 ---function to perform an assertion.
 ---@param object table<integer, any> The array object to begin asserting
----@return luassert.array arrayAssert A new object that has further assert function options
+---@return luassert.array.assert arrayAssert A new object that has further assert function options
 function internal.array(object) end
 
 --#endregion
@@ -337,53 +398,55 @@ function internal.array(object) end
 ]]
 function luassert:register(namespace, name, callback, positive_message, negative_message) end
 
---[[
-    ### Customized formatters
-The formatters are functions taking a single argument that needs to be converted to a string representation. The formatter should examine the value provided, if it can format the value, it should return the formatted string, otherwise it should return `nil`.
-Formatters can be added through `assert:add_formatter(formatter_func)`, and removed by calling `assert:remove_formatter(formatter_func)`.
-
-Example using the included binary string formatter:
-```lua
-local binstring = require("luassert.formatters.binarystring")
-
-describe("Tests using a binary string formatter", function()
-
-  setup(function()
-    assert:add_formatter(binstring)
-  end)
-
-  teardown(function()
-    assert:remove_formatter(binstring)
-  end)
-
-  it("tests a string comparison with binary formatting", function()
-    local s1, s2 = "", ""
-    for n = 65,88 do
-      s1 = s1 .. string.char(n)
-      s2 = string.char(n) .. s2
-    end
-    assert.are.same(s1, s2)
-
-  end)
-
-end)
-```
-
-Because this formatter formats string values, and is added last, it will take precedence over the regular string formatter. The results will be:
-```
-Failure: ...ua projects\busted\formatter\spec\formatter_spec.lua @ 13
-tests a string comparison with binary formatting
-...ua projects\busted\formatter\spec\formatter_spec.lua:19: Expected objects to be the same. Passed in:
-Binary string length; 24 bytes
-58 57 56 55 54 53 52 51   50 4f 4e 4d 4c 4b 4a 49  XWVUTSRQ PONMLKJI
-48 47 46 45 44 43 42 41                            HGFEDCBA
-
-Expected:
-Binary string length; 24 bytes
-41 42 43 44 45 46 47 48   49 4a 4b 4c 4d 4e 4f 50  ABCDEFGH IJKLMNOP
-51 52 53 54 55 56 57 58                            QRSTUVWX
-```
-]]
+---### Customized formatters
+---
+---The formatters are functions taking a single argument that needs to be converted to a string representation. The formatter should examine the value provided, if it can format the value, it should return the formatted string, otherwise it should return `nil`.
+---Formatters can be added through `assert:add_formatter(formatter_func)`, and removed by calling `assert:remove_formatter(formatter_func)`.
+---
+---Example using the included binary string formatter:
+---
+---```lua
+---local binstring = require("luassert.formatters.binarystring")
+---
+---describe("Tests using a binary string formatter", function()
+---
+---  setup(function()
+---    assert:add_formatter(binstring)
+---  end)
+---
+---  teardown(function()
+---    assert:remove_formatter(binstring)
+---  end)
+---
+---  it("tests a string comparison with binary formatting", function()
+---    local s1, s2 = "", ""
+---    for n = 65,88 do
+---      s1 = s1 .. string.char(n)
+---      s2 = string.char(n) .. s2
+---    end
+---    assert.are.same(s1, s2)
+---
+---  end)
+---
+---end)
+---```
+---
+---Because this formatter formats string values, and is added last, it will take
+---precedence over the regular string formatter. The results will be:
+---
+---```
+---Failure: ...ua projects\busted\formatter\spec\formatter_spec.lua @ 13
+---tests a string comparison with binary formatting
+---...ua projects\busted\formatter\spec\formatter_spec.lua:19: Expected objects to be the same. Passed in:
+---Binary string length; 24 bytes
+---58 57 56 55 54 53 52 51   50 4f 4e 4d 4c 4b 4a 49  XWVUTSRQ PONMLKJI
+---48 47 46 45 44 43 42 41                            HGFEDCBA
+---
+---Expected:
+---Binary string length; 24 bytes
+---41 42 43 44 45 46 47 48   49 4a 4b 4c 4d 4e 4f 50  ABCDEFGH IJKLMNOP
+---51 52 53 54 55 56 57 58                            QRSTUVWX
+---```
 ---@param callback fun(obj:any):string|nil
 function luassert:add_formatter(callback) end
 
@@ -393,16 +456,16 @@ function luassert:remove_formatter(fmtr) end
 --- To register state information 'parameters' can be used. The parameter is included in a snapshot and can hence be restored in between tests. For an example see `Configuring table depth display` below.
 ---@param name any
 ---@param value any
+---
 ---## Example
---[[
-```lua
-assert:set_parameter("my_param_name", 1)
-local s = assert:snapshot()
-assert:set_parameter("my_param_name", 2)
-s:revert()
-assert.are.equal(1, assert:get_parameter("my_param_name"))
-```
-]]
+---
+---```lua
+---assert:set_parameter("my_param_name", 1)
+---local s = assert:snapshot()
+---assert:set_parameter("my_param_name", 2)
+---s:revert()
+---assert.are.equal(1, assert:get_parameter("my_param_name"))
+---```
 function luassert:set_parameter(name, value) end
 
 --- get current snapshot parameter

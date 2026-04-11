@@ -1,6 +1,6 @@
 ---@meta
 
----@class luassert.array
+---@class luassert.array.assert
 local array = {}
 
 ---Assert that an array has holes in it
@@ -8,8 +8,11 @@ local array = {}
 ---@return integer|nil holeIndex The index of the first found hole or `nil` if there was no hole.
 function array.holes(length) end
 
-array.has = array
+array.has_holes = array.holes
+array.has_no_holes = array.holes
 
+array.has = array
 array.no = array
+array.has_no = array
 
 return array
