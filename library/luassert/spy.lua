@@ -139,6 +139,7 @@ spy_assert.was = {
 	called_less_than = spy_assert.called_less_than,
 	returned_with = spy_assert.returned_with,
 }
+spy_assert.was_not = spy_assert.was
 spy_assert.called = called
 spy_assert.was_called = spy_assert.called
 spy_assert.was.called = spy_assert.called
