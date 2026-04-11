@@ -116,28 +116,28 @@ function spy_assert.called_less_than(times) end
 function spy_assert.returned_with(...) end
 
 local called = {
-    with = spy_assert.called_with,
-    at_least = spy_assert.called_at_least,
-    at_most = spy_assert.called_at_most,
-    more_than = spy_assert.called_more_than,
-    less_than = spy_assert.called_less_than,
-    at = {
-        least = spy_assert.called_at_least,
-        most = spy_assert.called_at_most,
-    },
-    more = { than = spy_assert.called_more_than },
-    less = { than = spy_assert.called_less_than },
+	with = spy_assert.called_with,
+	at_least = spy_assert.called_at_least,
+	at_most = spy_assert.called_at_most,
+	more_than = spy_assert.called_more_than,
+	less_than = spy_assert.called_less_than,
+	at = {
+		least = spy_assert.called_at_least,
+		most = spy_assert.called_at_most,
+	},
+	more = { than = spy_assert.called_more_than },
+	less = { than = spy_assert.called_less_than },
 }
 
 spy_assert.was = {
-    called = called,
-    called_with = spy_assert.called_with,
-    not_called_with = spy_assert.not_called_with,
-    called_at_least = spy_assert.called_at_least,
-    called_at_most = spy_assert.called_at_most,
-    called_more_than = spy_assert.called_more_than,
-    called_less_than = spy_assert.called_less_than,
-    returned_with = spy_assert.returned_with,
+	called = called,
+	called_with = spy_assert.called_with,
+	not_called_with = spy_assert.not_called_with,
+	called_at_least = spy_assert.called_at_least,
+	called_at_most = spy_assert.called_at_most,
+	called_more_than = spy_assert.called_more_than,
+	called_less_than = spy_assert.called_less_than,
+	returned_with = spy_assert.returned_with,
 }
 spy_assert.called = called
 spy_assert.was_called = spy_assert.called

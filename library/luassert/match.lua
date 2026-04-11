@@ -96,7 +96,6 @@ match.ref = match.is_ref
 match.Ref = match.is_ref
 match.is_not_ref = match.is_ref
 
-
 ---Combine matchers, matching all provided matchers.
 ---@param ... table|function
 ---@return luassert.Matcher

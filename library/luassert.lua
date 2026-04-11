@@ -123,7 +123,6 @@ internal.is_not_thread = internal.is_thread
 internal.not_thread = internal.is_thread
 internal.is_not_a_thread = internal.is_thread
 
-
 ---Assert that a value is truthy.
 ---@param value unknown The value to confirm is truthy.
 function internal.is_truthy(value) end
