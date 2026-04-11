@@ -1,5 +1,15 @@
 ---@meta
 
+---@class luassert.State
+---@field mod boolean
+---@field tokens string[]
+---@field [string] luassert.State
+---@overload fun(...: unknown): (...: any)
+
+---@alias luassert.Assertion fun(state: luassert.State, args: luassert.Arguments<unknown>, level: integer): (mod: boolean, message: string)
+---@alias luassert.Modifier fun(state: luassert.State, args?: luassert.Arguments<unknown>, level?: integer): luassert.State
+---@alias luassert.Matcher fun(state: luassert.State, args: luassert.Arguments<unknown>, level: integer): (fun(value: unknown): (mod: boolean))
+
 ---@class luassert.internal
 local internal = {}
 
@@ -356,45 +366,46 @@ function internal.array(object) end
 
 --#region test apis
 
---- register custom assertions
+---Register a custom assertion.
 ---@param namespace 'assertion' | 'matcher' | 'modifier' | string
 ---@param name string
 ---@param callback function
 ---@param positive_message string
 ---@param negative_message string
+---
 ---## Example
---[[
-```lua
- it("Checks register creates custom assertions", function()
-    local say = require("say")
-
-    local function has_property(state, arguments)
-      local property = arguments[1]
-      local table = arguments[2]
-      for key, value in pairs(table) do
-        if key == property then
-          return true
-        end
-      end
-      return false
-    end
-
-    say:set_namespace("en")
-    say:set("assertion.has_property.positive", "Expected property %s in:\n%s")
-    say:set("assertion.has_property.negative", "Expected property %s to not be in:\n%s")
-    assert:register("assertion", "has_property", has_property, "assertion.has_property.positive", "assertion.has_property.negative")
-
-    assert.has_property("name", { name = "jack" })
-    assert.has.property("name", { name = "jack" })
-    assert.not_has_property("surname", { name = "jack" })
-    assert.Not.has.property("surname", { name = "jack" })
-    assert.has_error(function() assert.has_property("surname", { name = "jack" }) end)
-    assert.has_error(function() assert.has.property("surname", { name = "jack" }) end)
-    assert.has_error(function() assert.no_has_property("name", { name = "jack" }) end)
-    assert.has_error(function() assert.no.has.property("name", { name = "jack" }) end)
-  end)
-```
-]]
+---
+---```lua
+---it("Checks register creates custom assertions", function()
+---    local say = require("say")
+---
+---    ---@type luassert.Assertion
+---    local function has_property(state, arguments)
+---      local property = arguments[1]
+---      local table = arguments[2]
+---      for key, value in pairs(table) do
+---        if key == property then
+---          return true
+---        end
+---      end
+---      return false
+---    end
+---
+---    say:set_namespace("en")
+---    say:set("assertion.has_property.positive", "Expected property %s in:\n%s")
+---    say:set("assertion.has_property.negative", "Expected property %s to not be in:\n%s")
+---    assert:register("assertion", "has_property", has_property, "assertion.has_property.positive", "assertion.has_property.negative")
+---
+---    assert.has_property("name", { name = "jack" })
+---    assert.has.property("name", { name = "jack" })
+---    assert.not_has_property("surname", { name = "jack" })
+---    assert.Not.has.property("surname", { name = "jack" })
+---    assert.has_error(function() assert.has_property("surname", { name = "jack" }) end)
+---    assert.has_error(function() assert.has.property("surname", { name = "jack" }) end)
+---    assert.has_error(function() assert.no_has_property("name", { name = "jack" }) end)
+---    assert.has_error(function() assert.no.has.property("name", { name = "jack" }) end)
+---end)
+---```
 function luassert:register(namespace, name, callback, positive_message, negative_message) end
 
 ---### Customized formatters
@@ -446,13 +457,16 @@ function luassert:register(namespace, name, callback, positive_message, negative
 ---41 42 43 44 45 46 47 48   49 4a 4b 4c 4d 4e 4f 50  ABCDEFGH IJKLMNOP
 ---51 52 53 54 55 56 57 58                            QRSTUVWX
 ---```
----@param callback fun(obj:any):string|nil
+---@param callback luassert.state.Formatter
+---@see luassert.state.add_formatter
 function luassert:add_formatter(callback) end
 
----@param fmtr function
+---@param fmtr luassert.state.Formatter
+---@see luassert.state.remove_formatter
 function luassert:remove_formatter(fmtr) end
 
---- To register state information 'parameters' can be used. The parameter is included in a snapshot and can hence be restored in between tests. For an example see `Configuring table depth display` below.
+---To register state information 'parameters' can be used. The parameter is
+---included in a snapshot and can hence be restored in between tests.
 ---@param name any
 ---@param value any
 ---
@@ -465,19 +479,24 @@ function luassert:remove_formatter(fmtr) end
 ---s:revert()
 ---assert.are.equal(1, assert:get_parameter("my_param_name"))
 ---```
+---
+---@see luassert.state.set_parameter
 function luassert:set_parameter(name, value) end
 
---- get current snapshot parameter
+---Get the current snapshot parameter.
 ---@param name any
 ---@return any value
+---@see luassert.state.get_parameter
 function luassert:get_parameter(name) end
 
 ---To be able to revert changes created by tests, inserting spies and stubs for example, luassert supports 'snapshots'. A snapshot includes the following;
----@return {revert:fun()}
+---@return luassert.state.Snapshot
+---@see luassert.state.snapshot
 function luassert:snapshot() end
 
 ---a list of values to be formatted by `state.format_argument`
----@class luassert.format.args<T>
+---@see luassert.state.format_argument
+---@class luassert.Arguments<T>
 ---argument values
 ---@field [integer] T
 ---the number of arguments
@@ -488,11 +507,12 @@ function luassert:snapshot() end
 ---@field fmtargs { [integer]: unknown? }
 
 ---Transform a list of values `args` in-place to a list of strings.
----@param args luassert.format.args<unknown>
----@return luassert.format.args<string> args -- the arguments that were transformed
+---@param args luassert.Arguments<unknown>
+---@return luassert.Arguments<string> args -- the arguments that were transformed
 function luassert:format(args) end
 
 ---@param spy luassert.Spy
+---@see luassert.state.add_spy
 function luassert:add_spy(spy) end
 
 ---stores an error level
