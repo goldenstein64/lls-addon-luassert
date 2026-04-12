@@ -33,7 +33,7 @@ function stub.on_call_with(...) end
 
 ---like spies, except that stubs do not call the function
 ---they replace.
----@class luassert.stub_factory
+---@class luassert.stub.factory
 ---@overload fun(object: table, key: unknown, fn: function): (stub: luassert.Stub)
 ---@overload fun(object: table, key: unknown, ...: unknown): (stub: luassert.Stub)
 local stub_factory = {}
