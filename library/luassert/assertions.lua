@@ -1,0 +1,3 @@
+---@meta
+---registers assertions already defined in init.lua
+---@see luassert.internal
