@@ -3,7 +3,7 @@
 ---@alias luassert.Mock { [unknown]: luassert.Mock | luassert.Spy }
 
 ---A mock wraps an entire table's functions in spies or mocks.
----@class luassert.mock.factory : luassert.spy.factory
+---@class luassert.mock.factory
 ---@overload fun(object: unknown, doStubs?: boolean, func?: function, self?: table, key?: unknown): luassert.Mock
 local mock = {}
 
