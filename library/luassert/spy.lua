@@ -171,8 +171,9 @@ spy_assert.was.not_called = spy_assert.called
 function spy_factory.new(target) end
 
 ---Create a new spy that replaces a method in a table in place.
----@param table table The table that the method is a part of
----@param methodName string The method to spy on
+---@generic Method
+---@param table { [Method]: function } The table that the method is a part of
+---@param methodName Method The method to spy on
 ---@return luassert.Spy spy A spy object that can be used to perform assertions
 ---
 ---## Example
@@ -200,8 +201,8 @@ function spy_factory.new(target) end
 function spy_factory.on(table, methodName) end
 
 ---Check that the provided object is a spy.
----@param object any The object to confirm is a spy
----@return boolean isSpy If the object is a spy or not
+---@param object unknown -- the object to confirm is a spy
+---@return boolean isSpy -- if the object is a spy or not
 function spy_factory.is_spy(object) end
 
 --#endregion
