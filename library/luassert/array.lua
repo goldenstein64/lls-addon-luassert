@@ -14,5 +14,3 @@ array.has_no_holes = array.holes
 array.has = array
 array.no = array
 array.has_no = array
-
-return array
